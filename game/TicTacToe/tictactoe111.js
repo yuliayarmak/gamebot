@@ -94,3 +94,11 @@ function winningMessage(plr) {
 //  function resetGame(){
 //     location.reload();
 //  }
+if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+  document.getElementById('game').style.display='none'; 
+  document.getElementById('btn').style.display='none';
+  document.getElementById('resetButton').style.display='none';
+  document.getElementById('resetButton').style.display='none';
+  
+  
+}
