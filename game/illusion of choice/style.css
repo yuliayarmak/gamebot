@@ -12,6 +12,15 @@ body{
     position: fixed;
 }
 
+#sorry{
+    display: none;
+}
+
+.victims {
+    text-align: center;
+    margin-top: 50%;
+}
+
 #screenPosition{
     padding-top: 70px;
 }
