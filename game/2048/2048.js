@@ -130,15 +130,6 @@ function addNumber() {
   }
 }
 
-// function compare(a, b) {
-//     for (let i = 0; i < size; i++) {
-//       for (let j = 0; j < size; j++) {
-//         if (a[i][j] !== b[i][j]) {
-//           return true;
-//         }
-//       }
-//     }
-
 //config
 document.onkeydown = function(event) {
   if (lose == false) {
@@ -154,16 +145,6 @@ document.onkeydown = function(event) {
     scoreTable.innerHTML = +score;
   }
 };
-
-//   function CheckWin() {
-//     for (let i = 0; i < size; i++) {
-//       for (let j = 0; j < size; j++) {
-//         if (blocks[i][j] == 2048) {
-//           return win = true;
-//         }
-//       }
-//     }
-//     }
 
 
 
@@ -281,14 +262,10 @@ function moveDown() {
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-  //   if(win == true){
-  //       alert("you win")
-
-  //   }else if (lose == true) {
-  //     alert("you lose")
-
-  //   }
+  lose == true;
+  alert("you lose")
 }
+///iOS only compatibility (optional), comment if not needed
 if(!(/iPhone|iPad/i.test(navigator.userAgent))){
   document.getElementById('canvasBlock').style.display='none'; 
   document.getElementById('canvas').style.display='none';
