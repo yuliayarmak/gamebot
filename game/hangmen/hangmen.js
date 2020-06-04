@@ -126,3 +126,15 @@ start.addEventListener('click', startGame);
 const send = document.getElementById('send');
 send.addEventListener('click', game);
 
+if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+  document.getElementById('canvas').style.display='none';
+  document.getElementById('word').style.display='none';
+  document.getElementById('tries').style.display='none';
+  document.getElementById('sendHere').style.display='none';
+  document.getElementById('attention').style.display='none';
+  document.getElementById('result').style.display='none';
+  document.getElementById('startButton').style.display='none';
+  document.getElementById('sorry').style.display = 'block';
+  document.getElementById('sorry').style.color = 'white';
+}
+
