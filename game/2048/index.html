@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2048</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>2048</h1>
+    <p id="score" > score: </p>
+    <div id="canvasBlock">
+        <canvas id="canvas" width="500" height="500"></canvas>
+      </div>
+      <div class="clear"></div>
+      <div id="btn">
+        <button id="resetButton" button onclick="startGame()">Restart Game</button></div>
+    <div id="control">
+        
+        <button onclick="moveLeft()">left</button>
+        <button onclick="moveUp()">up</button>
+        <button onclick="moveDown()">down</button>
+        <button onclick="moveRight()">right</button>
+    <script src="2048.js"></script>
+</body>
+</html>
