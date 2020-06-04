@@ -1,0 +1,243 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#back{
+    background-image: url(img/bckg.jpg);
+    width: 400px;
+    height: 579px;
+    margin-left: 36%;
+    text-align: center;
+    position: fixed;
+}
+
+#sorry{
+    display: none;
+}
+
+.victims {
+    text-align: center;
+    margin-top: 50%;
+}
+
+#screenPosition{
+    padding-top: 70px;
+}
+
+#screen{
+    width: 300px;
+    height: 164px;
+}
+
+#enemy {
+    width: 34px;
+    height: 51px;
+    display: flex;
+    margin-left: 45%;
+    position: relative;
+    margin-top: -112px;
+}
+
+#btn{
+    padding-top: 14%;
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin-left: 12%;
+    padding-top: 27%;
+}
+
+#btnStyle{
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-left: 7px;
+    color:#848484;
+    background: #2E2E2E;
+    border: none;
+}
+
+#btnStyle:hover{
+    color:#6E6E6E;
+    background: #2E2E2E;
+}
+
+.images {
+    padding-top: 5%;
+    display: flex;
+}
+
+#img{
+    margin-left: 34.5%;
+}
+
+#card {
+    border-radius: 2px;
+    
+}
+/* 
+#cardo {
+    border-radius: 2px;
+    
+} */
+
+#secondCard, #thidrCard{
+    margin-left: 4%;
+}
+
+#psevdocoloda{
+    padding-top: 25%;
+    display: flex;
+    margin-left: 45%;
+    width: 37px;
+    height: 54px;
+    
+}
+
+    
+#choice {
+    width: 34px;
+    height: 51px;
+    /* border-color: green; */
+    border: 0.5px solid green;
+    /* margin-left: 10%; */
+    display: none;
+    
+}
+
+@media screen and (width:320px) {
+    #back {
+        background-image: url(img/320.jpg);
+        margin-left: 0;
+   }
+  
+    #screenPosition {
+        margin-right: 76px;
+    }
+
+    #btn {
+         margin-left: 3%;
+    }
+    
+    #psevdocoloda {
+    margin-left: 36%;
+   }
+   
+   #img {
+    margin-left: 24.8%;
+   }
+}
+
+
+
+@media screen and (width:375px) and (height:667px) {
+
+    #back {
+        background-image: url(img/photo2.jpg);
+        width: 400px;
+        height: 667px;
+        margin-left: 0;
+    }
+
+    #screenPosition {
+         margin-right: 17px;
+    }
+
+    #btn {
+        margin-left: 10%;
+        padding-top: 35%;
+    }
+
+    #psevdocoloda {
+        padding-top: 37%;
+        margin-left: 43%;
+    }
+
+    #img {
+        margin-left: 31.5%;
+    }
+}
+
+@media screen and (width:414px) and (height:736px){
+
+    #back { 
+        background-image: url(img/photo3.jpg);
+        width: 414px;
+        height: 736px;
+        margin-left: 0;
+    }
+
+    #btn {
+        margin-left: 14%;
+        padding-top: 40%;
+    }
+
+    #psevdocoloda {
+        padding-top: 45%;
+    }
+}
+
+@media screen and (width:375px) and (height:812px){
+    #back {
+        background-image: url(img/photo4.jpg);
+        width: 400px;
+        height: 812px;
+        margin-left: 0;
+    }
+    
+    #screenPosition {
+        padding-top: 70px;
+        margin-right: 16px
+    }
+
+    #btn {
+        margin-left: 10%;
+        padding-top: 48%
+    }
+    
+    #psevdocoloda {
+        padding-top: 58%;
+        margin-left: 42%;
+    }
+
+    #img {
+        margin-left: 30.5%;
+    }
+}
+
+@media screen and (width:768px) and (height:1024px) {
+    
+    #back {
+        background-image: url(img/photo5.jpg);
+        width: 768px;
+        height: 1024px;
+        margin-left: 0;
+    }
+    
+    #btn {
+        margin-left: 29%;
+        padding-top: 33%;
+    }
+    
+    #screen {
+        margin-right: 23px;
+    }
+    
+    #psevdocoloda {
+        padding-top: 43%;
+        margin-left: 46%;
+    }
+    
+    #enemy {
+        margin-left: 46%;
+    }
+    
+    #img {
+        margin-left: 38.9%;
+    }
+
+}
