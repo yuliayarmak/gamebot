@@ -132,3 +132,8 @@ const play = function() {
 
 const start = document.getElementById('btnStyle');
 start.addEventListener('click', play);
+
+if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+  document.getElementById('back').style.display='none';
+  document.getElementById('sorry').style.display = 'block';
+}
