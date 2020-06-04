@@ -289,3 +289,11 @@ function finishGame() {
 
   //   }
 }
+if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+  document.getElementById('canvasBlock').style.display='none'; 
+  document.getElementById('canvas').style.display='none';
+  document.getElementById('btn').style.display='none';
+  document.getElementById('control').style.display='none';
+  document.getElementById('score').style.display='none';
+  document.getElementById('notification').style.display = 'block';
+}
