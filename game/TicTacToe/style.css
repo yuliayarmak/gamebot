@@ -48,3 +48,67 @@ body{
 h1{
     text-align: center;
 }
+#notification{
+    display: none;
+
+}
+.note{
+    text-align: center;
+    margin-top: 50%;
+}
+@media screen and (width:320px) {
+    .game-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #game {
+       width: 300px;
+       height: 300px;
+       background-color: black;
+       display: flex;
+       flex-wrap: wrap;}}
+@media screen and (width:375px) and (height:667px) {
+    .game-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #game {
+       width: 300px;
+       height: 300px;
+       background-color: black;
+       display: flex;
+       flex-wrap: wrap;}}
+@media screen and (width:414px) and (height:736px){
+    .game-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #game {
+       width: 300px;
+       height: 300px;
+       background-color: black;
+       display: flex;
+       flex-wrap: wrap; }}
+@media screen and (width:375px) and (height:812px){
+    .game-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #game {
+       width: 300px;
+       height: 300px;
+       background-color: black;
+       display: flex;
+       flex-wrap: wrap;}}
