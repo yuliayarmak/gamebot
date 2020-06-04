@@ -12,6 +12,15 @@ canvas{
     margin-top: 5%; 
 }
 
+#sorry{
+    display: none;
+}
+
+.victims {
+    text-align: center;
+    margin-top: 50%;
+}
+
 .eshafot {
     
     width: 400px;
