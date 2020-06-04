@@ -1,0 +1,40 @@
+canvas {
+    display: none;
+}
+
+.styleBtn {
+    text-transform: uppercase;
+    border-radius: 11px;
+    border: none;
+    background: green;
+    color: white;
+    width: 89px;
+    height: 37px;
+    margin-top: 7px
+}
+
+.styleBtn:hover {
+color: grey;
+}
+
+#start {
+    margin-left: 12%;
+    margin-top: 20%;
+}
+
+
+#btn {
+    display: none;
+}
+
+#up{
+    margin-left: 12%;
+}
+
+#lr {
+    margin-left: 8%;
+}
+
+#down{
+    margin-left: 12%;
+}
