@@ -13,5 +13,5 @@ bot.help((ctx) => ctx.reply('Ничем не могу помочь. Это вс�
 bot.command('luckyCards',({ replyWithGame }) => replyWithGame(gameShortName));
 bot.gameQuery(({ answerGameQuery }) => answerGameQuery(gameUrl));
 
-bot.command('hangmen',({ replyWithGame }) => replyWithGame(gameShortName2));
+bot.command('hangman',({ replyWithGame }) => replyWithGame(gameShortName2));
 bot.launch()
