@@ -8,7 +8,7 @@ exam-bot
 [Telegraf](https://telegraf.js.org/#/)
 
 # Как использовать?
- бот находится [здесь] (t.me/OneOfTheGameBots_bot)
+ бот находится [здесь](t.me/OneOfTheGameBots_bot)
  
 # Каталог игр 
 (адаптировано для iOS)
