@@ -1,5 +1,5 @@
 const { Telegraf } = require('telegraf');
-const config = require('./config.json'); //здесь находиться токен
+const config = require('./config.json'); //здесь находится токен
 
 const gameUrl = 'https://chadcancer.github.io/luckycard/';
 const gameUrl2 = 'https://chadcancer.github.io/hangman/';
