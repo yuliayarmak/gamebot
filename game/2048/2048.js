@@ -130,15 +130,6 @@ function addNumber() {
   }
 }
 
-// function compare(a, b) {
-//     for (let i = 0; i < size; i++) {
-//       for (let j = 0; j < size; j++) {
-//         if (a[i][j] !== b[i][j]) {
-//           return true;
-//         }
-//       }
-//     }
-
 //config
 document.onkeydown = function(event) {
   if (lose == false) {
@@ -159,6 +150,7 @@ document.onkeydown = function(event) {
   }
 };
 
+
   function CheckWin() {
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
@@ -168,6 +160,7 @@ document.onkeydown = function(event) {
       }
     }
     };
+
 
 
 
@@ -285,12 +278,14 @@ function moveDown() {
 
 function finishGame() {
   canvas.style.opacity = '0.5';
+
   if (lose = true){
   alert("you lose")
 } else if (win = true){
     alert("you win")
   } 
 };
+///iOS only compatibility (optional), comment if not needed
 
 if(!(/iPhone|iPad/i.test(navigator.userAgent))){
   document.getElementById('canvasBlock').style.display='none'; 
