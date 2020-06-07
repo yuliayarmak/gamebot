@@ -11,11 +11,8 @@ const card1 = new Card('scissors', scissorsImg);
 const card2 = new Card('paper', paperImg);
 const card3 = new Card('rock', rockImg);
 
-const objArr = [];
-objArr.push(card1, card2, card3);
-
-const cards = [];
-cards.push(card1.img, card2.img, card3.img);
+const objArr = [card1, card2, card3];
+const cards = [card1.img, card2.img, card3.img];
 const randPicture= Math.floor(Math.random() * cards.length);
 const picture = cards[randPicture];
 
@@ -30,8 +27,7 @@ const userCard3= cards[randomCard3];
 const firstCard = document.getElementById('firstCard');
 const secondCard = document.getElementById('secondCard');
 const thidrCard = document.getElementById('thidrCard');
-const userCards=[];
-userCards.push(firstCard, secondCard, thidrCard);
+const userCards=[firstCard, secondCard, thidrCard];
 
 const btn = document.getElementById('btn');
 const choice = document.getElementById('choice');
