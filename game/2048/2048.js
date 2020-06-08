@@ -8,8 +8,8 @@ const width = canvas.width / size - 5;
 
 const blocks = [];
 let textSize;
-const lose = false;
-const win = false;
+let lose = false;
+let win = false;
 startGame();
 
 function startGame() {
@@ -115,7 +115,7 @@ function addNumber() {
     }
   }
   if (count === 0) {
-    //   CheckWin()
+    lose = true;
     finishGame();
     return;
   }
@@ -135,16 +135,32 @@ document.onkeydown = function(event) {
   if (lose == false) {
     if (event.keyCode === 38) {
       moveUp();
+      checkWin();
     } else if (event.keyCode === 39) {
       moveRight();
+      checkWin();
     } else if (event.keyCode === 40) {
       moveDown();
+      checkWin();
     } else if (event.keyCode === 37) {
       moveLeft();
+      checkWin();
     }
     scoreTable.innerHTML = +score;
   }
 };
+
+
+  function CheckWin() {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        if (blocks[i][j] == 2048) {
+          return win = true;
+        }
+      }
+    }
+    };
+
 
 
 
@@ -262,10 +278,15 @@ function moveDown() {
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-  lose == true;
+
+  if (lose = true){
   alert("you lose")
-}
+} else if (win = true){
+    alert("you win")
+  } 
+};
 ///iOS only compatibility (optional), comment if not needed
+
 if(!(/iPhone|iPad/i.test(navigator.userAgent))){
   document.getElementById('canvasBlock').style.display='none'; 
   document.getElementById('canvas').style.display='none';
