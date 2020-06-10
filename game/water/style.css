@@ -1,0 +1,81 @@
+canvas {
+    display: none;
+    margin-left: -9px;
+}
+
+body {
+    background: #FFFEEB;
+}
+.styleBtn {
+    text-transform: uppercase;
+    border-radius: 11px;
+    border: none;
+    background: green;
+    color: white;
+    width: 89px;
+    height: 37px;
+    margin-top: 7px
+}
+
+.styleBtn:hover {
+color: grey;
+}
+
+#start {
+    margin-left: 12%;
+    margin-top: 20%;
+}
+
+#btn {
+    display: none;
+}
+
+#up{
+    margin-left: 12%;
+}
+
+#lr {
+    margin-left: 8%;
+}
+
+#down{
+    margin-left: 12%;
+}
+
+#end {
+    text-align: center;
+}
+
+#endText {
+    font-size: 45px;
+    color: #4E7DF5;
+    text-transform: uppercase;
+}
+
+@media screen and (width:375px) and (max-height:670px) {
+
+    #startPos {
+        margin-left: 10%;
+        padding-top: 35%;
+    }
+
+    .upBtn {
+        margin-left: 110px;
+    }
+
+    .downBtn{
+        margin-left: 110px;
+    }
+
+    #lr {
+        margin-left: 90px;
+    }
+
+    #btn {
+        margin-top: -50px;
+    }
+
+    #end {
+        margin-top: -50px;
+    }
+}
