@@ -5,10 +5,12 @@ const gameUrl = 'https://chadcancer.github.io/luckycard/';
 const gameUrl2 = 'https://chadcancer.github.io/hangman/';
 const gameUrl3 = 'https://chadcancer.github.io/tictactoe/';
 const gameUrl4 = 'https://chadcancer.github.io/2048/';
+const gameUrl5 = 'https://chadcancer.github.io/water-riders/';
 const gameShortName = 'LuckyCards';
 const gameShortName2 = 'hangman';
 const gameShortName3 = 'TicTacToe';
 const gameShortName4 = 'twentyfourtyeight';
+const gameShortName4 = 'WaterRiders'
 let url;
 
 const bot = new Telegraf(config.token)
