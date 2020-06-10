@@ -12,6 +12,12 @@ body{
     position: fixed;
 }
 
+#check {
+    margin-right: 230px;
+    margin-top: -25px;
+    display: none;
+}
+
 #sorry{
     display: none;
 }

@@ -65,7 +65,8 @@ const startGame = function() {
 };
 
 const game = function() {
-  let n = document.getElementById('userLetter').value;
+  let letter = document.getElementById('userLetter').value;
+  let n = letter.toLowerCase();
   document.getElementById('userLetter').value = '';
   if (n === ' ' || n.length > 1) {
     warning.innerHTML = 'please follow the correct entry rules';
