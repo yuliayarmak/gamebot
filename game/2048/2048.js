@@ -128,16 +128,16 @@ document.onkeydown = function(event) {
   if (lose == false) {
     if (event.keyCode === 38) {
       moveUp();
-      CheckWin();
+      сheckWin();
     } else if (event.keyCode === 39) {
       moveRight();
-      CheckWin();
+      сheckWin();
     } else if (event.keyCode === 40) {
       moveDown();
-      CheckWin();
+      сheckWin();
     } else if (event.keyCode === 37) {
       moveLeft();
-      CheckWin();
+      сheckWin();
     scoreTable.innerHTML  = ("Score: " + score);
   }
 
@@ -151,7 +151,7 @@ function click(){
     scoreTable.innerHTML  = ("Score: " + score);
   }}
 
-  function CheckWin() {
+  function сheckWin() {
     for (let i = 0; i < blocks.length; i++) {
       for (let j = 0; j < blocks.length; j++) {
         if (blocks[i][j] == 2048) {
@@ -283,12 +283,11 @@ function finishGame() {
     alert("you win")
   } 
 }
-// iOS adaptation 
-if(!(/iPhone|iPad/i.test(navigator.userAgent))){
-  document.getElementById('canvasBlock').style.display='none'; 
-  document.getElementById('canvas').style.display='none';
-  document.getElementById('btn').style.display='none';
-  document.getElementById('control').style.display='none';
-  document.getElementById('score').style.display='none';
-  document.getElementById('notification').style.display = 'block';
-}
+// if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+//   document.getElementById('canvasBlock').style.display='none'; 
+//   document.getElementById('canvas').style.display='none';
+//   document.getElementById('btn').style.display='none';
+//   document.getElementById('control').style.display='none';
+//   document.getElementById('score').style.display='none';
+//   document.getElementById('notification').style.display = 'block';
+// }
