@@ -5,7 +5,10 @@ const scoreTable = document.getElementById('score');
 let score = 0;
 const size = 4;
 const width = canvas.width / size - 5;
-
+const upButton = document.getElementById('up');
+const downButton = document.getElementById('down');
+const leftButton = document.getElementById('left');
+const rightButton = document.getElementById('right');
 const blocks = [];
 let textSize;
 let lose = false;
@@ -13,11 +16,14 @@ let win = false;
 startGame();
 
 function startGame() {
+  canvas.style.opacity = '1'
+  score = 0;
   createBlocks();
   drawAllBlocks();
-  addNumber();
-  addNumber();
-
+  pasteNewBlock();
+  pasteNewBlock();
+  
+  
 
 }
 
@@ -39,82 +45,60 @@ function createBlocks() {
 function drawBlock(block) {
   ctx.beginPath();
   ctx.rect(block.x, block.y, width, width);
-
-  switch (block.value) {
-  case 0:
-    ctx.fillStyle = '#FFFFFF';
-    break;
-  case 2:
-    ctx.fillStyle = '#FFFAAB';
-    break;
-  case 4:
-    ctx.fillStyle = '#CEFFAB';
-    break;
-  case 8:
-    ctx.fillStyle = '#F9ABFF';
-    break;
-  case 16:
-    ctx.fillStyle = '#FF3C3C';
-    break;
-  case 32:
-    ctx.fillStyle = '#3C82FF';
-    break;
-  case 64:
-    ctx.fillStyle = '#3CFFDA';
-    break;
-  case 128:
-    ctx.fillStyle = '#BF3CFF';
-    break;
-  case 256:
-    ctx.fillStyle = '#9B3CFF';
-    break;
-  case 512:
-    ctx.fillStyle = '#5BFF3C';
-    break;
-  case 1024:
-    ctx.fillStyle = '#8489FF';
-    break;
-  case 2048:
-    ctx.fillStyle = '#D9FF28';
-    break;
-  case 4096:
-    ctx.fillStyle = '#BC1B1B';
-    break;
-  default:
-    ctx.fillStyle = '#';
-
-  }
-  ctx.fill();
+  ctx.fillStyle = '#FFFFFF'
+   
+    ctx.fill();
+    
+    
   if (block.value) {
+    const colors  = new Map([
+      [2, '#CEFFAB'],
+      [4, '#CEFFAB'],
+      [8, '#F9ABFF'],
+      [16, '#FF3C3C'],
+      [32, '#3C82FF'],
+      [64,'#3CFFDA'],
+      [128, '#BF3CFF'],
+      [256, '#9B3CFF'],
+      [512, '#5BFF3C'],
+      [1024, '#8489FF'],
+      [2048,'#D9FF28'],
+      [4096, '#F9ABFF'],
+    ]);
+    for(let value of colors.values()){
+      ctx.fillStyle = value;
+      ctx.fill()
+    }
     textSize = width / 2;
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
     ctx.fillText(block.value, block.x + width / 2, block.y + width / 1.5);
-
+   
   }
 }
 
 function drawAllBlocks() {
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
+  for (let i = 0; i < blocks.length; i++) {
+    for (let j = 0; j < blocks.length; j++) {
       drawBlock(blocks[i][j]);
     }
   }
 }
 
-function addNumber() {
+function pasteNewBlock() {
   let count = 0;
   let i;
   let j;
-  for (i = 0; i < size; i++) {
-    for (j = 0; j < size; j++) {
+  for (i = 0; i < blocks.length; i++) {
+    for (j = 0; j < blocks.length; j++) {
       if (blocks[i][j].value === 0) {
         count++;
       }
     }
   }
   if (count === 0) {
+
     lose = true;
     finishGame();
     return;
@@ -124,43 +108,58 @@ function addNumber() {
     const coll = Math.floor(Math.random() * size);
     if (blocks[row][coll].value === 0) {
       blocks[row][coll].value = Math.random(1) > 0.5 ? 2 : 4;
-      drawAllBlocks();
+      drawAllBlocks()
       return;
     }
   }
 }
+
+// function compare(a, b) {
+//     for (let i = 0; i < size; i++) {
+//       for (let j = 0; j < size; j++) {
+//         if (a[i][j] !== b[i][j]) {
+//           return true;
+//         }
+//       }
+//     }
 
 //config
 document.onkeydown = function(event) {
   if (lose == false) {
     if (event.keyCode === 38) {
       moveUp();
-      checkWin();
+      CheckWin();
     } else if (event.keyCode === 39) {
       moveRight();
-      checkWin();
+      CheckWin();
     } else if (event.keyCode === 40) {
       moveDown();
-      checkWin();
+      CheckWin();
     } else if (event.keyCode === 37) {
       moveLeft();
-      checkWin();
-    }
-    scoreTable.innerHTML = +score;
+      CheckWin();
+    scoreTable.innerHTML  = ("Score: " + score);
   }
-};
 
+  } }
+;
+
+click()
+
+function click(){
+  if(document.getElementById('up').clicked == true){
+    scoreTable.innerHTML  = ("Score: " + score);
+  }}
 
   function CheckWin() {
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
+    for (let i = 0; i < blocks.length; i++) {
+      for (let j = 0; j < blocks.length; j++) {
         if (blocks[i][j] == 2048) {
           return win = true;
         }
       }
     }
-    };
-
+    }
 
 
 
@@ -168,8 +167,8 @@ function moveRight() {
   let i;
   let j;
   let coll;
-  for (i = 0; i < size; i++) {
-    for (j = size - 2; j >= 0; j--) {
+  for (i = 0; i < blocks.length; i++) {
+    for (j = blocks.length - 2; j >= 0; j--) {
       if (blocks[i][j].value) {
         coll = j;
         while (coll + 1 < size) {
@@ -189,15 +188,15 @@ function moveRight() {
       }
     }
   }
-  addNumber();
+  pasteNewBlock();
 }
 
 function moveLeft() {
   let i;
   let j;
   let coll;
-  for (i = 0; i < size; i++) {
-    for (j = 1; j < size; j++) {
+  for (i = 0; i < blocks.length; i++) {
+    for (j = 1; j < blocks.length; j++) {
       if (blocks[i][j].value) {
         coll = j;
         while (coll - 1 >= 0) {
@@ -217,15 +216,15 @@ function moveLeft() {
       }
     }
   }
-  addNumber();
+  pasteNewBlock();
 }
 
 function moveUp() {
   let i;
   let j;
   let row;
-  for (j = 0; j < size; j++) {
-    for (i = 1; i < size; i++) {
+  for (j = 0; j < blocks.length; j++) {
+    for (i = 1; i < blocks.length; i++) {
       if (blocks[i][j].value) {
         row = i;
         while (row > 0) {
@@ -245,15 +244,15 @@ function moveUp() {
       }
     }
   }
-  addNumber();
+  pasteNewBlock();
 }
 
 function moveDown() {
   let i;
   let j;
   let row;
-  for (j = 0; j < size; j++) {
-    for (i = size - 2; i >= 0; i--) {
+  for (j = 0; j < blocks.length; j++) {
+    for (i = blocks.length - 2; i >= 0; i--) {
       if (blocks[i][j].value) {
         row = i;
         while (row + 1 < size) {
@@ -273,20 +272,18 @@ function moveDown() {
       }
     }
   }
-  addNumber();
+  pasteNewBlock();
 }
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-
   if (lose = true){
   alert("you lose")
 } else if (win = true){
     alert("you win")
   } 
-};
-///iOS only compatibility (optional), comment if not needed
-
+}
+// iOS adaptation 
 if(!(/iPhone|iPad/i.test(navigator.userAgent))){
   document.getElementById('canvasBlock').style.display='none'; 
   document.getElementById('canvas').style.display='none';
