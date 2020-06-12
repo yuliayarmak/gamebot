@@ -36,15 +36,6 @@ const Boat = function(image, x, y, isPlayer) {
   this.image.src = image;
 };
 
-Boat.prototype.Update = function() {
-  if (!this.isPlayer) {
-    this.y += step;
-  }
-
-  if (this.y > canvas.height + 50) {
-    this.dead = true;
-  }
-};
 
 Boat.prototype.Collide = function(ball) {
   let hit = false;
