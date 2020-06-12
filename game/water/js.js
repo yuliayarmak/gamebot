@@ -109,7 +109,6 @@ function Update() {
     objects.push(new Ball('img/ball.png', RandomInteger(30, canvas.width - 50), RandomInteger(250, 400) * -1));
   }
 
-  user.Update();
   let isDead = false;
 
   for (let i = 0; i < objects.length; i++) {
