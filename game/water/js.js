@@ -186,7 +186,7 @@ function Stop() {
   document.getElementById('btn').style.display = 'none';
   setTimeout(() => {
     document.location.reload();
-  }, 5000);
+  }, 3000);
 }
 
 
