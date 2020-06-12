@@ -36,7 +36,6 @@ const Boat = function(image, x, y, isPlayer) {
   this.image.src = image;
 };
 
-
 Boat.prototype.Collide = function(ball) {
   let hit = false;
   if (this.y < ball.y + ball.image.height - 10 && this.y + this.image.height - 10 > ball.y) {
