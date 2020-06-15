@@ -24,7 +24,7 @@ const fff = new Image();
 fff.src = 'img/end.jpg';
 
 
-const words = ['нужно', 'добавить', 'словарь', 'потом', 'это', 'сделаю'];
+const words = ['а', 'вы', 'живы'];
 let lives = 6;
 const rand = Math.floor(Math.random() * words.length);
 const randWord = words[rand];
