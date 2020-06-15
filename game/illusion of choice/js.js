@@ -64,9 +64,9 @@ const play = function() {
   thidrCard.innerHTML=userCard3;
 
  choice.addEventListener('click', function (){
-    if(choice.innerHTML === ''){
-      return choice.innerHTML = userCard1;
-    }
+      if(choice.innerHTML === ''){
+       return choice.innerHTML = userCard1;
+      }
       if(choice.innerHTML === userCard1){
        return  choice.innerHTML = userCard2;
       } 
