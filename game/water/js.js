@@ -178,6 +178,13 @@ down.addEventListener('click', () => {
   user.MovingBoat('y', step);
 });
 
+let timer;
+
+function Start() {
+  if (!user.dead) {
+    timer = setInterval(Update, 100);
+  }
+}
 
 function Stop() {
   clearInterval(timer);
@@ -187,13 +194,6 @@ function Stop() {
   setTimeout(() => {
     document.location.reload();
   }, 3000);
-}
-
-
-function Start() {
-  if (!user.dead) {
-    timer = setInterval(Update, 100);
-  }
 }
 
 const start = document.getElementById('start');
