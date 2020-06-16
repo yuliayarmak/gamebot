@@ -27,8 +27,9 @@ function startGame() {
 function turnOn(sqr) {
   if (typeof gameBoard[sqr.target.id] === 'number') {
     turn(sqr.target.id, player);
-    if (!checkDraw()){
-    turn(aiSpot(), aI)};
+    if (!checkDraw()) {
+      turn(aiSpot(), aI);
+    }
   }
 }
 
@@ -36,14 +37,14 @@ function turn(sqrId, plr) {
   gameBoard[sqrId] = plr;
   document.getElementById(sqrId).innerText = plr;
   const gameWin = checkIfWin(gameBoard, plr);
-  if (gameWin) 
-  gameOver(gameWin);
+  if (gameWin)
+    gameOver(gameWin);
 
 }
 
-    
-    
-  
+
+
+
 
 function checkIfWin(board, plr) {
 
@@ -75,7 +76,7 @@ function aiSpot() {
 }
 
 function checkDraw() {
-  if (emptyBoxes().length == 0) {
+  if (emptyBoxes().length === 0) {
     for (let i = 0; i < boxes.length; i++) {
       boxes[i].removeEventListener('click', turnOn, false);
     }
@@ -91,10 +92,10 @@ function winningMessage(plr) {
 }
 
 // if(!(/iPhone|iPad/i.test(navigator.userAgent))){
-//   document.getElementById('game').style.display='none'; 
+//   document.getElementById('game').style.display='none';
 //   document.getElementById('btn').style.display='none';
 //   document.getElementById('resetButton').style.display='none';
 //   document.getElementById('resetButton').style.display='none';
-  
-  
+
+
 
