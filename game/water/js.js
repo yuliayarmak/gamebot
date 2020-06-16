@@ -2,7 +2,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const step = 10;
-const objects = [];
+const obj = [];
 const width = canvas.width;
 const height = canvas.height;
 
@@ -21,7 +21,7 @@ const WaterRoad = function(image, y) {
 WaterRoad.prototype.Update = function(water) {
   this.y += step;
   if (this.y > 390) {
-    this.y = water.y - canvas.width + step;
+    this.y = water.y - width + step;
   }
 };
 
@@ -39,8 +39,12 @@ const Boat = function(image, x, y, isPlayer) {
 
 Boat.prototype.Collide = function(ball) {
   let hit = false;
-  if (this.y < ball.y + ball.image.height - 10 && this.y + this.image.height - 10 > ball.y) {
-    if (this.x + this.image.width - 10 > ball.x && this.x < ball.x + ball.image.width - 10) {
+  const ballHeight = ball.image.height;
+  const ballWidth = ball.image.width;
+  const boatWidth = this.image.width;
+  const boatHeight = this.image.height;
+  if (this.y < ball.y + ballHeight - 10 && this.y + boatHeight - 10 > ball.y) {
+    if (this.x + boatWidth - 10 > ball.x && this.x < ball.x + ballWidth - 10) {
       hit = true;
     }
   }
@@ -84,49 +88,49 @@ const Ball = function(image, x, y) {
 Ball.prototype.Update = function() {
   this.y += step;
 
-  if (this.y > canvas.height + 50) {
+  if (this.y > height + 50) {
     this.dead = true;
   }
 };
 
 const roads = [
   new WaterRoad('img/waterRoad.jpg', 0),
-  new WaterRoad('img/waterRoad.jpg', canvas.width),
+  new WaterRoad('img/waterRoad.jpg', width),
 ];
 
 
-const user = new Boat('img/bigboat.png', (canvas.width / 2) - 20, canvas.height - 48, true);
+const user = new Boat('img/bigboat.png', (width / 2) - 20, height - 48, true);
 
-function RandomInteger(min, max) {
-  const rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
+function rand(min, max) {
+  const randCoordinate = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(randCoordinate);
 }
 
 function Update() {
   roads[0].Update(roads[1]);
   roads[1].Update(roads[0]);
-  if (RandomInteger(0, 10000) > 9000) {
-    objects.push(new Ball('img/ball.png', RandomInteger(30, canvas.width - 50), RandomInteger(250, 400) * -1));
+  if (rand(0, 10000) > 9000) {
+    objects.push(new Ball('img/ball.png', rand(30, width - 50), rand(250, 400) * -1));
   }
 
   let isDead = false;
 
-  for (let i = 0; i < objects.length; i++) {
-    objects[i].Update();
+  for (let i = 0; i < obj.length; i++) {
+    obj[i].Update();
 
-    if (objects[i].dead) {
+    if (obj[i].dead) {
       isDead = true;
     }
   }
 
   if (isDead) {
-    objects.shift();
+    obj.shift();
   }
 
   let hit = false;
 
-  for (let i = 0; i < objects.length; i++) {
-    hit = user.Collide(objects[i]);
+  for (let i = 0; i < obj.length; i++) {
+    hit = user.Collide(obj[i]);
     if (hit) {
       Stop();
       user.dead = true;
@@ -140,18 +144,19 @@ function Update() {
 
 
 function Draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, width, height);
   for (let i = 0; i < roads.length; i++) {
     ctx.drawImage(roads[i].image, 0, 0, roads[i].image.width, 
-     roads[i].image.height, roads[i].x, roads[i].y, canvas.width, canvas.width,);
+     roads[i].image.height, roads[i].x, roads[i].y, width, width,);
   }
 
   DrawBoat(user);
 
-  for (let i = 0; i < objects.length; i++) {
-    DrawBall(objects[i]);
+  for (let i = 0; i < obj.length; i++) {
+    DrawBall(obj[i]);
   }
 }
+
 function DrawBoat(boat) {
   ctx.drawImage(boat.image, 0, 0, boat.image.width,
    boat.image.height, boat.x, boat.y, boat.image.width, boat.image.height);
@@ -159,7 +164,7 @@ function DrawBoat(boat) {
 
 
 function DrawBall(ball) {
-  ctx.drawImage(ball.image,  ball.x, ball.y, ball.image.width, ball.image.height);
+  ctx.drawImage(ball.image, ball.x, ball.y, ball.image.width, ball.image.height);
 }
 
 const up = document.getElementById('up');
