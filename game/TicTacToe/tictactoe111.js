@@ -25,18 +25,19 @@ function startGame() {
 
 
 function turnOn(sqr) {
-  // console.log("click")
   if (typeof gameBoard[sqr.target.id] === 'number') {
     turn(sqr.target.id, player);
-    if (!checkDraw()) turn(aiSpot(), aI);
+    if (!checkDraw()){
+    turn(aiSpot(), aI)};
   }
 }
 
-function turn(sqrId, player) {
-  gameBoard[sqrId] = player;
-  document.getElementById(sqrId).innerText = player;
-  const gameWin = checkIfWin(gameBoard, player);
-  if (gameWin) gameOver(gameWin);
+function turn(sqrId, plr) {
+  gameBoard[sqrId] = plr;
+  document.getElementById(sqrId).innerText = plr;
+  const gameWin = checkIfWin(gameBoard, plr);
+  if (gameWin) 
+  gameOver(gameWin);
 
 }
 
@@ -89,12 +90,11 @@ function winningMessage(plr) {
   alert(plr);
 }
 
-///iOS-only compatibility, comment if not needed 
-if(!(/iPhone|iPad/i.test(navigator.userAgent))){
-  document.getElementById('game').style.display='none'; 
-  document.getElementById('btn').style.display='none';
-  document.getElementById('resetButton').style.display='none';
-  document.getElementById('resetButton').style.display='none';
+// if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+//   document.getElementById('game').style.display='none'; 
+//   document.getElementById('btn').style.display='none';
+//   document.getElementById('resetButton').style.display='none';
+//   document.getElementById('resetButton').style.display='none';
   
   
-}
+
