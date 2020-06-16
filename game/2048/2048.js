@@ -9,7 +9,7 @@ class GameBoard {
     this.width = canvas.width / size - 5;
     this.blocks = blocks;
   }
-}
+};
 const board = new GameBoard();
 let textSize;
 let lose = false;
@@ -22,17 +22,13 @@ function startGame() {
   drawAllBlocks();
   pasteNewBlock();
   pasteNewBlock();
-
-
-
-}
+};
 
 function block(row, coll) {
   this.value = 0;
   this.x = coll * board.width + 4 * (coll + 1);
   this.y = row * board.width + 4 * (row + 1);
-
-}
+};
 function createBlocks() {
   for (let i = 0; i < board.size; i++) {
     board.blocks[i] = [];
@@ -40,7 +36,7 @@ function createBlocks() {
       board.blocks[i][j] = new block(i, j);
     }
   }
-}
+};
 
 function drawBlock(block) {
   ctx.beginPath();
@@ -65,7 +61,7 @@ function drawBlock(block) {
     for (const value of colors.values()) {
       ctx.fillStyle = value;
       ctx.fill();
-    }
+    };
     textSize = board.width / 2;
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
@@ -73,7 +69,7 @@ function drawBlock(block) {
     ctx.fillText(block.value, block.x + board.width / 2, block.y + board.width / 1.5);
 
   }
-}
+};
 
 function drawAllBlocks() {
   for (let i = 0; i < board.blocks.length; i++) {
@@ -81,7 +77,7 @@ function drawAllBlocks() {
       drawBlock(board.blocks[i][j]);
     }
   }
-}
+};
 
 function pasteNewBlock() {
   let count = 0;
@@ -95,7 +91,6 @@ function pasteNewBlock() {
     }
   }
   if (count === 0) {
-
     lose = true;
     finishGame();
     return;
@@ -109,7 +104,7 @@ function pasteNewBlock() {
       return;
     }
   }
-}
+};
 
 //config
 document.onkeydown = function(event) {
@@ -128,10 +123,8 @@ document.onkeydown = function(event) {
       сheckWin();
       scoreTable.innerHTML  = ('Score: ' + score);
     }
-
   }
-}
-;
+};
 
 function сheckWin() {
   for (let i = 0; i < board.blocks.length; i++) {
@@ -141,7 +134,7 @@ function сheckWin() {
       }
     }
   }
-}
+};
 
 
 
@@ -171,7 +164,7 @@ function moveRight() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveLeft() {
   let i;
@@ -199,7 +192,7 @@ function moveLeft() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveUp() {
   let i;
@@ -227,7 +220,7 @@ function moveUp() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveDown() {
   let i;
@@ -255,7 +248,7 @@ function moveDown() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function finishGame() {
   canvas.style.opacity = '0.5';
@@ -264,7 +257,7 @@ function finishGame() {
   } else if (win = true) {
     alert('you win');
   }
-}
+};
 // if(!(/iPhone|iPad/i.test(navigator.userAgent))){
 //   document.getElementById('canvasBlock').style.display='none';
 //   document.getElementById('canvas').style.display='none';
