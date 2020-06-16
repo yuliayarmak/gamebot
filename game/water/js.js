@@ -32,7 +32,9 @@ const Boat = function(image, x, y) {
   this.dead = false;
   this.image = new Image();
   const obj = this;
-  this.image.addEventListener('load', () => { obj.loaded = true; });
+  this.image.addEventListener('load', () => { 
+    obj.loaded = true; 
+  });
   this.image.src = image;
 };
 
