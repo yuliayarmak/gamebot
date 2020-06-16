@@ -3,113 +3,87 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const scoreTable = document.getElementById('score');
 let score = 0;
-const size = 4;
-const width = canvas.width / size - 5;
-
-const blocks = [];
+class GameBoard {
+  constructor(size = 4, blocks = []) {
+    this.size = size;
+    this.width = canvas.width / size - 5;
+    this.blocks = blocks;
+  }
+};
+const board = new GameBoard();
 let textSize;
 let lose = false;
 let win = false;
 startGame();
-
 function startGame() {
+  canvas.style.opacity = '1';
+  score = 0;
   createBlocks();
   drawAllBlocks();
-  addNumber();
-  addNumber();
-
-
-}
+  pasteNewBlock();
+  pasteNewBlock();
+};
 
 function block(row, coll) {
   this.value = 0;
-  this.x = coll * width + 4 * (coll + 1);
-  this.y = row * width + 4 * (row + 1);
-
-}
+  this.x = coll * board.width + 4 * (coll + 1);
+  this.y = row * board.width + 4 * (row + 1);
+};
 function createBlocks() {
-  for (let i = 0; i < size; i++) {
-    blocks[i] = [];
-    for (let j = 0; j < size; j++) {
-      blocks[i][j] = new block(i, j);
+  for (let i = 0; i < board.size; i++) {
+    board.blocks[i] = [];
+    for (let j = 0; j < board.size; j++) {
+      board.blocks[i][j] = new block(i, j);
     }
   }
-}
+};
 
 function drawBlock(block) {
   ctx.beginPath();
-  ctx.rect(block.x, block.y, width, width);
-
-  switch (block.value) {
-  case 0:
-    ctx.fillStyle = '#FFFFFF';
-    break;
-  case 2:
-    ctx.fillStyle = '#FFFAAB';
-    break;
-  case 4:
-    ctx.fillStyle = '#CEFFAB';
-    break;
-  case 8:
-    ctx.fillStyle = '#F9ABFF';
-    break;
-  case 16:
-    ctx.fillStyle = '#FF3C3C';
-    break;
-  case 32:
-    ctx.fillStyle = '#3C82FF';
-    break;
-  case 64:
-    ctx.fillStyle = '#3CFFDA';
-    break;
-  case 128:
-    ctx.fillStyle = '#BF3CFF';
-    break;
-  case 256:
-    ctx.fillStyle = '#9B3CFF';
-    break;
-  case 512:
-    ctx.fillStyle = '#5BFF3C';
-    break;
-  case 1024:
-    ctx.fillStyle = '#8489FF';
-    break;
-  case 2048:
-    ctx.fillStyle = '#D9FF28';
-    break;
-  case 4096:
-    ctx.fillStyle = '#BC1B1B';
-    break;
-  default:
-    ctx.fillStyle = '#';
-
-  }
+  ctx.rect(block.x, block.y, board.width, board.width);
+  ctx.fillStyle = '#FFFFFF';
   ctx.fill();
   if (block.value) {
-    textSize = width / 2;
+    const colors  = new Map([
+      [2, '#CEFFAB'],
+      [4, '#CEFFAB'],
+      [8, '#F9ABFF'],
+      [16, '#FF3C3C'],
+      [32, '#3C82FF'],
+      [64, '#3CFFDA'],
+      [128, '#BF3CFF'],
+      [256, '#9B3CFF'],
+      [512, '#5BFF3C'],
+      [1024, '#8489FF'],
+      [2048, '#D9FF28'],
+      [4096, '#F9ABFF'],
+    ]);
+    for (const value of colors.values()) {
+      ctx.fillStyle = value;
+      ctx.fill();
+    };
+    textSize = board.width / 2;
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
-    ctx.fillText(block.value, block.x + width / 2, block.y + width / 1.5);
+    ctx.fillText(block.value, block.x + board.width / 2, block.y + board.width / 1.5);
 
   }
-}
+};
 
 function drawAllBlocks() {
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      drawBlock(blocks[i][j]);
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 0; j < board.blocks.length; j++) {
+      drawBlock(board.blocks[i][j]);
     }
   }
-}
+};
 
-function addNumber() {
+function pasteNewBlock() {
   let count = 0;
-  let i;
-  let j;
-  for (i = 0; i < size; i++) {
-    for (j = 0; j < size; j++) {
-      if (blocks[i][j].value === 0) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 0; j < board.blocks.length; j++) {
+      if (board.blocks[i][j].value === 0) {
         count++;
       }
     }
@@ -120,67 +94,62 @@ function addNumber() {
     return;
   }
   while (true) {
-    const row = Math.floor(Math.random() * size);
-    const coll = Math.floor(Math.random() * size);
-    if (blocks[row][coll].value === 0) {
-      blocks[row][coll].value = Math.random(1) > 0.5 ? 2 : 4;
+    const row = Math.floor(Math.random() * board.size);
+    const coll = Math.floor(Math.random() * board.size);
+    if (board.blocks[row][coll].value === 0) {
+      board.blocks[row][coll].value = Math.random(1) > 0.5 ? 2 : 4;
       drawAllBlocks();
       return;
     }
   }
-}
+};
 
 //config
 document.onkeydown = function(event) {
   if (lose == false) {
     if (event.keyCode === 38) {
       moveUp();
-      checkWin();
+      сheckWin();
     } else if (event.keyCode === 39) {
       moveRight();
-      checkWin();
+      сheckWin();
     } else if (event.keyCode === 40) {
       moveDown();
-      checkWin();
+      сheckWin();
     } else if (event.keyCode === 37) {
       moveLeft();
-      checkWin();
+      сheckWin();
+      scoreTable.innerHTML  = ('Score: ' + score);
     }
-    scoreTable.innerHTML = +score;
   }
 };
 
-
-  function CheckWin() {
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        if (blocks[i][j] == 2048) {
-          return win = true;
-        }
+function сheckWin() {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 0; j < board.blocks.length; j++) {
+      if (board.blocks[i][j] == 2048) {
+        return win = true;
       }
     }
-    };
-
+  }
+};
 
 
 
 function moveRight() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < size; i++) {
-    for (j = size - 2; j >= 0; j--) {
-      if (blocks[i][j].value) {
-        coll = j;
-        while (coll + 1 < size) {
-          if (blocks[i][coll + 1].value === 0) {
-            blocks[i][coll + 1].value = blocks[i][coll].value;
-            blocks[i][coll].value = 0;
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = board.blocks.length - 2; j >= 0; j--) {
+      if (board.blocks[i][j].value) {
+        let coll = j;
+        while (coll + 1 < board.blocks.length) {
+          if (board.blocks[i][coll + 1].value === 0) {
+            board.blocks[i][coll + 1].value = board.blocks[i][coll].value;
+            board.blocks[i][coll].value = 0;
             coll++;
-          } else if (blocks[i][coll].value == blocks[i][coll + 1].value) {
-            blocks[i][coll + 1].value *= 2;
-            score +=  blocks[i][coll + 1].value;
-            blocks[i][coll].value = 0;
+          } else if (board.blocks[i][coll].value == board.blocks[i][coll + 1].value) {
+            board.blocks[i][coll + 1].value *= 2;
+            score +=  board.blocks[i][coll + 1].value;
+            board.blocks[i][coll].value = 0;
             break;
           } else {
             break;
@@ -189,26 +158,23 @@ function moveRight() {
       }
     }
   }
-  addNumber();
-}
+  pasteNewBlock();
+};
 
 function moveLeft() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < size; i++) {
-    for (j = 1; j < size; j++) {
-      if (blocks[i][j].value) {
-        coll = j;
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 1; j < board.blocks.length; j++) {
+      if (board.blocks[i][j].value) {
+        let coll = j;
         while (coll - 1 >= 0) {
-          if (blocks[i][coll - 1].value === 0) {
-            blocks[i][coll - 1].value = blocks[i][coll].value;
-            blocks[i][coll].value = 0;
+          if (board.blocks[i][coll - 1].value === 0) {
+            board.blocks[i][coll - 1].value = board.blocks[i][coll].value;
+            board.blocks[i][coll].value = 0;
             coll--;
-          } else if (blocks[i][coll].value == blocks[i][coll - 1].value) {
-            blocks[i][coll - 1].value *= 2;
-            score +=   blocks[i][coll - 1].value;
-            blocks[i][coll].value = 0;
+          } else if (board.blocks[i][coll].value ==  board.blocks[i][coll - 1].value) {
+            board.blocks[i][coll - 1].value *= 2;
+            score +=   board.blocks[i][coll - 1].value;
+            board.blocks[i][coll].value = 0;
             break;
           } else {
             break;
@@ -217,26 +183,23 @@ function moveLeft() {
       }
     }
   }
-  addNumber();
-}
+  pasteNewBlock();
+};
 
-function moveUp() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < size; j++) {
-    for (i = 1; i < size; i++) {
-      if (blocks[i][j].value) {
-        row = i;
+function moveUp() 
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = 1; i <  board.blocks.length; i++) {
+      if (board.blocks[i][j].value) {
+       let row = i;
         while (row > 0) {
-          if (blocks[row - 1][j].value === 0) {
-            blocks[row - 1][j].value = blocks[row][j].value;
-            blocks[row][j].value = 0;
+          if (board.blocks[row - 1][j].value === 0) {
+            board.blocks[row - 1][j].value =  board.blocks[row][j].value;
+            board.blocks[row][j].value = 0;
             row--;
-          } else if (blocks[row][j].value == blocks[row - 1][j].value) {
-            blocks[row - 1][j].value *= 2;
-            score +=  blocks[row - 1][j].value;
-            blocks[row][j].value = 0;
+          } else if (board.blocks[row][j].value == board.blocks[row - 1][j].value) {
+            board.blocks[row - 1][j].value *= 2;
+            score +=   board.blocks[row - 1][j].value;
+            board.blocks[row][j].value = 0;
             break;
           } else {
             break;
@@ -245,26 +208,23 @@ function moveUp() {
       }
     }
   }
-  addNumber();
-}
+  pasteNewBlock();
+};
 
 function moveDown() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < size; j++) {
-    for (i = size - 2; i >= 0; i--) {
-      if (blocks[i][j].value) {
-        row = i;
-        while (row + 1 < size) {
-          if (blocks[row + 1][j].value === 0) {
-            blocks[row + 1][j].value = blocks[row][j].value;
-            blocks[row][j].value = 0;
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = board.blocks.length - 2; i >= 0; i--) {
+      if (board.blocks[i][j].value) {
+        let row = i;
+        while (row + 1 < board.blocks.length) {
+          if (board.blocks[row + 1][j].value === 0) {
+            board.blocks[row + 1][j].value = board.blocks[row][j].value;
+            board.blocks[row][j].value = 0;
             row++;
-          } else if (blocks[row][j].value == blocks[row + 1][j].value) {
-            blocks[row + 1][j].value *= 2;
-            score +=  blocks[row + 1][j].value;
-            blocks[row][j].value = 0;
+          } else if (board.blocks[row][j].value == board.blocks[row + 1][j].value) {
+            board.blocks[row + 1][j].value *= 2;
+            score += board.blocks[row + 1][j].value;
+            board.blocks[row][j].value = 0;
             break;
           } else {
             break;
@@ -273,25 +233,22 @@ function moveDown() {
       }
     }
   }
-  addNumber();
-}
+  pasteNewBlock();
+};
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-
-  if (lose = true){
-  alert("you lose")
-} else if (win = true){
-    alert("you win")
-  } 
+  if (lose = true) {
+    alert('you lose');
+  } else if (win = true) {
+    alert('you win');
+  }
 };
-///iOS only compatibility (optional), comment if not needed
-
-if(!(/iPhone|iPad/i.test(navigator.userAgent))){
-  document.getElementById('canvasBlock').style.display='none'; 
-  document.getElementById('canvas').style.display='none';
-  document.getElementById('btn').style.display='none';
-  document.getElementById('control').style.display='none';
-  document.getElementById('score').style.display='none';
-  document.getElementById('notification').style.display = 'block';
-}
+// if(!(/iPhone|iPad/i.test(navigator.userAgent))){
+//   document.getElementById('canvasBlock').style.display='none';
+//   document.getElementById('canvas').style.display='none';
+//   document.getElementById('btn').style.display='none';
+//   document.getElementById('control').style.display='none';
+//   document.getElementById('score').style.display='none';
+//   document.getElementById('notification').style.display = 'block';
+// }

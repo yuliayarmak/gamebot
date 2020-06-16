@@ -18,7 +18,7 @@ const WaterRoad = function(image, y) {
   this.image.src = image;
 };
 
-WaterRoad.prototype.Update = function(water) {
+WaterRoad.prototype.Update = function(waterRoad) {
   this.y += step;
   if (this.y > 390) {
     this.y = water.y - width + step;
