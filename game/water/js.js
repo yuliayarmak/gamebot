@@ -1,3 +1,4 @@
+'use strict';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const step = 10;
@@ -141,7 +142,8 @@ function Update() {
 function Draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < roads.length; i++) {
-    ctx.drawImage(roads[i].image, 0, 0, roads[i].image.width, roads[i].image.height, roads[i].x, roads[i].y, canvas.width, canvas.width,);
+    ctx.drawImage(roads[i].image, 0, 0, roads[i].image.width, 
+     roads[i].image.height, roads[i].x, roads[i].y, canvas.width, canvas.width,);
   }
 
   DrawBoat(user);
@@ -151,7 +153,8 @@ function Draw() {
   }
 }
 function DrawBoat(boat) {
-  ctx.drawImage(boat.image, 0, 0, boat.image.width, boat.image.height, boat.x, boat.y, boat.image.width, boat.image.height);
+  ctx.drawImage(boat.image, 0, 0, boat.image.width,
+   boat.image.height, boat.x, boat.y, boat.image.width, boat.image.height);
 }
 
 
