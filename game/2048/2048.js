@@ -5,10 +5,7 @@ const scoreTable = document.getElementById('score');
 let score = 0;
 const size = 4;
 const width = canvas.width / size - 5;
-const upButton = document.getElementById('up');
-const downButton = document.getElementById('down');
-const leftButton = document.getElementById('left');
-const rightButton = document.getElementById('right');
+
 const blocks = [];
 let textSize;
 let lose = false;
@@ -51,6 +48,17 @@ function drawBlock(block) {
     
     
   if (block.value) {
+    // const colors = [
+    //   {color: '#CEFFAB'},
+    //   {color: '#CEFFAB'},
+    //   {color: '#CEFFAB'},
+    //   {color: '#CEFFAB'},
+    //   {color: '#F9ABFF'},
+    // ];
+    // for ( const color of colors){
+    //   ctx.fillStyle = color;
+    //   ctx.fill()
+    // }
     const colors  = new Map([
       [2, '#CEFFAB'],
       [4, '#CEFFAB'],
