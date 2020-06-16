@@ -25,12 +25,11 @@ WaterRoad.prototype.Update = function(waterRoad) {
   }
 };
 
-const Boat = function(image, x, y, isPlayer) {
+const Boat = function(image, x, y) {
   this.x = x;
   this.y = y;
   this.loaded = false;
   this.dead = false;
-  this.isPlayer = isPlayer;
   this.image = new Image();
   const obj = this;
   this.image.addEventListener('load', () => { obj.loaded = true; });
@@ -99,7 +98,7 @@ const roads = [
 ];
 
 
-const user = new Boat('img/bigboat.png', (width / 2) - 20, height - 48, true);
+const user = new Boat('img/bigboat.png', (width / 2) - 20, height - 48);
 
 function rand(min, max) {
   const randCoordinate = min - 0.5 + Math.random() * (max - min + 1);
