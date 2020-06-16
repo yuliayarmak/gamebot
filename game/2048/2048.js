@@ -81,10 +81,8 @@ function drawAllBlocks() {
 
 function pasteNewBlock() {
   let count = 0;
-  let i;
-  let j;
-  for (i = 0; i < board.blocks.length; i++) {
-    for (j = 0; j < board.blocks.length; j++) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 0; j < board.blocks.length; j++) {
       if (board.blocks[i][j].value === 0) {
         count++;
       }
@@ -139,13 +137,10 @@ function сheckWin() {
 
 
 function moveRight() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < board.blocks.length; i++) {
-    for (j = board.blocks.length - 2; j >= 0; j--) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = board.blocks.length - 2; j >= 0; j--) {
       if (board.blocks[i][j].value) {
-        coll = j;
+        let coll = j;
         while (coll + 1 < board.blocks.length) {
           if (board.blocks[i][coll + 1].value === 0) {
             board.blocks[i][coll + 1].value = board.blocks[i][coll].value;
@@ -167,13 +162,10 @@ function moveRight() {
 };
 
 function moveLeft() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < board.blocks.length; i++) {
-    for (j = 1; j < board.blocks.length; j++) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 1; j < board.blocks.length; j++) {
       if (board.blocks[i][j].value) {
-        coll = j;
+        let coll = j;
         while (coll - 1 >= 0) {
           if (board.blocks[i][coll - 1].value === 0) {
             board.blocks[i][coll - 1].value = board.blocks[i][coll].value;
@@ -194,14 +186,11 @@ function moveLeft() {
   pasteNewBlock();
 };
 
-function moveUp() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < board.blocks.length; j++) {
-    for (i = 1; i <  board.blocks.length; i++) {
+function moveUp() 
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = 1; i <  board.blocks.length; i++) {
       if (board.blocks[i][j].value) {
-        row = i;
+       let row = i;
         while (row > 0) {
           if (board.blocks[row - 1][j].value === 0) {
             board.blocks[row - 1][j].value =  board.blocks[row][j].value;
@@ -223,13 +212,10 @@ function moveUp() {
 };
 
 function moveDown() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < board.blocks.length; j++) {
-    for (i = board.blocks.length - 2; i >= 0; i--) {
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = board.blocks.length - 2; i >= 0; i--) {
       if (board.blocks[i][j].value) {
-        row = i;
+        let row = i;
         while (row + 1 < board.blocks.length) {
           if (board.blocks[row + 1][j].value === 0) {
             board.blocks[row + 1][j].value = board.blocks[row][j].value;
