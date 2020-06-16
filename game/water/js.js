@@ -109,7 +109,7 @@ function Update() {
   roads[0].Update(roads[1]);
   roads[1].Update(roads[0]);
   if (rand(0, 10000) > 9000) {
-    obj.push(new Ball('img/ball.png', rand(30, width - 50), rand(250, 400) * -1));
+    obj.push(new Ball('img/ball.png', rand(30, width-50), rand(250, 400) * -1));
   }
 
   let isDead = false;
@@ -163,7 +163,7 @@ function DrawBoat(boat) {
 
 
 function DrawBall(ball) {
-  ctx.drawImage(ball.image, ball.x, ball.y, ball.image.width, ball.image.height);
+ ctx.drawImage(ball.image, ball.x, ball.y, ball.image.width, ball.image.height);
 }
 
 const up = document.getElementById('up');
