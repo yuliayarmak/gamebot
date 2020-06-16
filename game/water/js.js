@@ -61,12 +61,12 @@ Boat.prototype.MovingBoat = function(variable, distance) {
 
   if (variable === 'y') {
     this.y += distance;
-    if (this.y + this.image.height > height) {
-      this.y -= distance;
-    }
-    if (this.y < 0) {
-      this.y = 0;
-    }
+  }
+  if (this.y + this.image.height > height) {
+    this.y -= distance;
+  }
+  if (this.y < 0) {
+    this.y = 0;
   }
 };
 
