@@ -13,23 +13,20 @@ let win = false;
 startGame();
 
 function startGame() {
-  canvas.style.opacity = '1'
+  canvas.style.opacity = '1';
   score = 0;
   createBlocks();
   drawAllBlocks();
   pasteNewBlock();
   pasteNewBlock();
-  
-  
-
-}
+};
 
 function block(row, coll) {
   this.value = 0;
   this.x = coll * width + 4 * (coll + 1);
   this.y = row * width + 4 * (row + 1);
+};
 
-}
 function createBlocks() {
   for (let i = 0; i < size; i++) {
     blocks[i] = [];
@@ -37,40 +34,40 @@ function createBlocks() {
       blocks[i][j] = new block(i, j);
     }
   }
-}
+};
 
 function drawBlock(block) {
   ctx.beginPath();
   ctx.rect(block.x, block.y, width, width);
-  ctx.fillStyle = '#FFFFFF'
+  ctx.fillStyle = '#FFFFFF';
   ctx.fill();
-    if (block.value) {
-     const colors  = new Map([
+  if (block.value) {
+    const colors  = new Map([
       [2, '#CEFFAB'],
       [4, '#CEFFAB'],
       [8, '#F9ABFF'],
       [16, '#FF3C3C'],
       [32, '#3C82FF'],
-      [64,'#3CFFDA'],
+      [64, '#3CFFDA'],
       [128, '#BF3CFF'],
       [256, '#9B3CFF'],
       [512, '#5BFF3C'],
       [1024, '#8489FF'],
-      [2048,'#D9FF28'],
+      [2048, '#D9FF28'],
       [4096, '#F9ABFF'],
     ]);
-    for(let value of colors.values()){
+    for (const value of colors.values()) {
       ctx.fillStyle = value;
-      ctx.fill()
+      ctx.fill();
     }
     textSize = width / 2;
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
     ctx.fillText(block.value, block.x + width / 2, block.y + width / 1.5);
-   
+
   }
-}
+};
 
 function drawAllBlocks() {
   for (let i = 0; i < blocks.length; i++) {
@@ -78,7 +75,7 @@ function drawAllBlocks() {
       drawBlock(blocks[i][j]);
     }
   }
-}
+};
 
 function pasteNewBlock() {
   let count = 0;
@@ -102,11 +99,11 @@ function pasteNewBlock() {
     const coll = Math.floor(Math.random() * size);
     if (blocks[row][coll].value === 0) {
       blocks[row][coll].value = Math.random(1) > 0.5 ? 2 : 4;
-      drawAllBlocks()
+      drawAllBlocks();
       return;
     }
   }
-}
+};
 
 //config
 document.onkeydown = function(event) {
@@ -123,21 +120,21 @@ document.onkeydown = function(event) {
     } else if (event.keyCode === 37) {
       moveLeft();
       сheckWin();
-    scoreTable.innerHTML  = ("Score: " + score);
+      scoreTable.innerHTML  = ('Score: ' + score);
+    }
+
   }
+};
 
-  } }
-;
-
-  function сheckWin() {
-    for (let i = 0; i < blocks.length; i++) {
-      for (let j = 0; j < blocks.length; j++) {
-        if (blocks[i][j] == 2048) {
-          return win = true;
-        }
+function сheckWin() {
+  for (let i = 0; i < blocks.length; i++) {
+    for (let j = 0; j < blocks.length; j++) {
+      if (blocks[i][j] == 2048) {
+        return win = true;
       }
     }
-    }
+  }
+};
 
 
 
@@ -167,7 +164,7 @@ function moveRight() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveLeft() {
   let i;
@@ -195,7 +192,7 @@ function moveLeft() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveUp() {
   let i;
@@ -223,7 +220,7 @@ function moveUp() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function moveDown() {
   let i;
@@ -251,18 +248,18 @@ function moveDown() {
     }
   }
   pasteNewBlock();
-}
+};
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-  if (lose = true){
-  alert("you lose")
-} else if (win = true){
-    alert("you win")
-  } 
-}
+  if (lose = true) {
+    alert('you lose');
+  } else if (win = true) {
+    alert('you win');
+  }
+};
 // if(!(/iPhone|iPad/i.test(navigator.userAgent))){
-//   document.getElementById('canvasBlock').style.display='none'; 
+//   document.getElementById('canvasBlock').style.display='none';
 //   document.getElementById('canvas').style.display='none';
 //   document.getElementById('btn').style.display='none';
 //   document.getElementById('control').style.display='none';
