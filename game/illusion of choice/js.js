@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const scissorsImg = '<img src="img/scissors.jpg" alt="#" id="card">';
 const paperImg = '<img src="img/paper.jpg" alt="#" id="card">';
 const rockImg = '<img src="img/rock.jpg" alt="#" id="card">';
@@ -39,6 +39,7 @@ const end = function() {
 };
 
 const userChoice = document.getElementById('check');
+const start = document.getElementById('btnStyle');
 
 const play = function() {
   btn.style.color='red';
@@ -123,7 +124,6 @@ const play = function() {
   })
 };
 
-const start = document.getElementById('btnStyle');
 start.addEventListener('click', play);
 
 if(!(/iPhone|iPad/i.test(navigator.userAgent))){
