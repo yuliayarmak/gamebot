@@ -43,23 +43,9 @@ function drawBlock(block) {
   ctx.beginPath();
   ctx.rect(block.x, block.y, width, width);
   ctx.fillStyle = '#FFFFFF'
-   
-    ctx.fill();
-    
-    
-  if (block.value) {
-    // const colors = [
-    //   {color: '#CEFFAB'},
-    //   {color: '#CEFFAB'},
-    //   {color: '#CEFFAB'},
-    //   {color: '#CEFFAB'},
-    //   {color: '#F9ABFF'},
-    // ];
-    // for ( const color of colors){
-    //   ctx.fillStyle = color;
-    //   ctx.fill()
-    // }
-    const colors  = new Map([
+  ctx.fill();
+    if (block.value) {
+     const colors  = new Map([
       [2, '#CEFFAB'],
       [4, '#CEFFAB'],
       [8, '#F9ABFF'],
@@ -122,15 +108,6 @@ function pasteNewBlock() {
   }
 }
 
-// function compare(a, b) {
-//     for (let i = 0; i < size; i++) {
-//       for (let j = 0; j < size; j++) {
-//         if (a[i][j] !== b[i][j]) {
-//           return true;
-//         }
-//       }
-//     }
-
 //config
 document.onkeydown = function(event) {
   if (lose == false) {
@@ -151,13 +128,6 @@ document.onkeydown = function(event) {
 
   } }
 ;
-
-click()
-
-function click(){
-  if(document.getElementById('up').clicked == true){
-    scoreTable.innerHTML  = ("Score: " + score);
-  }}
 
   function сheckWin() {
     for (let i = 0; i < blocks.length; i++) {
