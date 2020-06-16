@@ -13,7 +13,7 @@ class GameBoard {
 const board = new GameBoard();
 let textSize;
 let lose = false;
-let win = false;
+
 startGame();
 function startGame() {
   canvas.style.opacity = '1';
@@ -27,7 +27,7 @@ function startGame() {
 
 }
 
-function block(row, coll) {
+function Block(row, coll) {
   this.value = 0;
   this.x = coll * board.width + 4 * (coll + 1);
   this.y = row * board.width + 4 * (row + 1);
@@ -37,7 +37,7 @@ function createBlocks() {
   for (let i = 0; i < board.size; i++) {
     board.blocks[i] = [];
     for (let j = 0; j < board.size; j++) {
-      board.blocks[i][j] = new block(i, j);
+      board.blocks[i][j] = new Block(i, j);
     }
   }
 }
@@ -70,7 +70,8 @@ function drawBlock(block) {
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
-    ctx.fillText(block.value, block.x + board.width / 2, block.y + board.width / 1.5);
+    ctx.fillText(block.value, block.x + board.width / 2,
+      block.y + board.width / 1.5);
 
   }
 }
@@ -113,7 +114,7 @@ function pasteNewBlock() {
 
 //config
 document.onkeydown = function(event) {
-  if (lose == false) {
+  if (lose === false) {
     if (event.keyCode === 38) {
       moveUp();
       сheckWin();
@@ -136,8 +137,8 @@ document.onkeydown = function(event) {
 function сheckWin() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = 0; j < board.blocks.length; j++) {
-      if (board.blocks[i][j] == 2048) {
-        return win = true;
+      if (board.blocks[i][j] === 2048) {
+        return lose = false;
       }
     }
   }
@@ -146,19 +147,17 @@ function сheckWin() {
 
 
 function moveRight() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < board.blocks.length; i++) {
-    for (j = board.blocks.length - 2; j >= 0; j--) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = board.blocks.length - 2; j >= 0; j--) {
       if (board.blocks[i][j].value) {
-        coll = j;
+        let coll = j;
         while (coll + 1 < board.blocks.length) {
           if (board.blocks[i][coll + 1].value === 0) {
             board.blocks[i][coll + 1].value = board.blocks[i][coll].value;
             board.blocks[i][coll].value = 0;
             coll++;
-          } else if (board.blocks[i][coll].value == board.blocks[i][coll + 1].value) {
+          } else if (board.blocks[i][coll].value ===
+            board.blocks[i][coll + 1].value) {
             board.blocks[i][coll + 1].value *= 2;
             score +=  board.blocks[i][coll + 1].value;
             board.blocks[i][coll].value = 0;
@@ -174,19 +173,18 @@ function moveRight() {
 }
 
 function moveLeft() {
-  let i;
-  let j;
-  let coll;
-  for (i = 0; i < board.blocks.length; i++) {
-    for (j = 1; j < board.blocks.length; j++) {
+  for (let i = 0; i < board.blocks.length; i++) {
+    for (let j = 1; j < board.blocks.length; j++) {
       if (board.blocks[i][j].value) {
-        coll = j;
+        let coll = j;
         while (coll - 1 >= 0) {
           if (board.blocks[i][coll - 1].value === 0) {
             board.blocks[i][coll - 1].value = board.blocks[i][coll].value;
             board.blocks[i][coll].value = 0;
             coll--;
-          } else if (board.blocks[i][coll].value ==  board.blocks[i][coll - 1].value) {
+          } else if (board.blocks[i][coll].value ===
+
+            board.blocks[i][coll - 1].value) {
             board.blocks[i][coll - 1].value *= 2;
             score +=   board.blocks[i][coll - 1].value;
             board.blocks[i][coll].value = 0;
@@ -202,19 +200,17 @@ function moveLeft() {
 }
 
 function moveUp() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < board.blocks.length; j++) {
-    for (i = 1; i <  board.blocks.length; i++) {
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = 1; i <  board.blocks.length; i++) {
       if (board.blocks[i][j].value) {
-        row = i;
+        let row = i;
         while (row > 0) {
           if (board.blocks[row - 1][j].value === 0) {
-            board.blocks[row - 1][j].value =  board.blocks[row][j].value;
+            board.blocks[row - 1][j].value = board.blocks[row][j].value;
             board.blocks[row][j].value = 0;
             row--;
-          } else if (board.blocks[row][j].value == board.blocks[row - 1][j].value) {
+          } else if (board.blocks[row][j].value ===
+            board.blocks[row - 1][j].value) {
             board.blocks[row - 1][j].value *= 2;
             score +=   board.blocks[row - 1][j].value;
             board.blocks[row][j].value = 0;
@@ -230,19 +226,17 @@ function moveUp() {
 }
 
 function moveDown() {
-  let i;
-  let j;
-  let row;
-  for (j = 0; j < board.blocks.length; j++) {
-    for (i = board.blocks.length - 2; i >= 0; i--) {
+  for (let j = 0; j < board.blocks.length; j++) {
+    for (let i = board.blocks.length - 2; i >= 0; i--) {
       if (board.blocks[i][j].value) {
-        row = i;
+        let row = i;
         while (row + 1 < board.blocks.length) {
           if (board.blocks[row + 1][j].value === 0) {
             board.blocks[row + 1][j].value = board.blocks[row][j].value;
             board.blocks[row][j].value = 0;
             row++;
-          } else if (board.blocks[row][j].value == board.blocks[row + 1][j].value) {
+          } else if (board.blocks[row][j].value ===
+            board.blocks[row + 1][j].value) {
             board.blocks[row + 1][j].value *= 2;
             score += board.blocks[row + 1][j].value;
             board.blocks[row][j].value = 0;
@@ -259,9 +253,9 @@ function moveDown() {
 
 function finishGame() {
   canvas.style.opacity = '0.5';
-  if (lose = true) {
+  if (lose === true) {
     alert('you lose');
-  } else if (win = true) {
+  } else if (lose === false) {
     alert('you win');
   }
 }
