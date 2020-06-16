@@ -163,7 +163,7 @@ function DrawBoat(boat) {
 
 
 function DrawBall(ball) {
-  ctx.drawImage(ball.image, ball.x, ball.y, ball.image.width, ball.image.height);
+ ctx.drawImage(ball.image, ball.x, ball.y, ball.image.width, ball.image.height);
 }
 
 const up = document.getElementById('up');
