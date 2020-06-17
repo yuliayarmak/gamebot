@@ -28,7 +28,6 @@ const userCard3= cards[randomCard3];
 const firstCard = document.getElementById('firstCard');
 const secondCard = document.getElementById('secondCard');
 const thidrCard = document.getElementById('thidrCard');
-const userCards=[firstCard, secondCard, thidrCard];
 
 const btn = document.getElementById('btn');
 const choice = document.getElementById('choice');
