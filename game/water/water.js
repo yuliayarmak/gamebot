@@ -47,7 +47,7 @@ Boat.prototype.Collide = function(ball) {
   const ballX =  ball.x + ballWidth - 10;
   const curHeight =  this.y + boatHeight - 10;
   const curWidth =  this.x + boatWidth - 10;
-  return this.y < ballY && curHeight > ball.y && curWidth> ball.x && this.x < ballX
+  return this.y < ballY && curHeight > ball.y && curWidth> ball.x && this.x < ballX;
 };
 
 Boat.prototype.MovingBoat = function(variable, distance) {
