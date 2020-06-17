@@ -89,10 +89,8 @@ function pasteNewBlock() {
   let i;
   let j;
   for (i = 0; i < board.blocks.length; i++) {
-    for (j = 0; j < board.blocks.length; j++) {
-      if (board.blocks[i][j].value === 0) {
-        count++;
-      }
+   for (j = 0; j < board.blocks.length; j++) {
+      if (board.blocks[i][j].value === 0) count++;
     }
   }
   if (count === 0) {
