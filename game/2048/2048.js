@@ -86,10 +86,8 @@ function drawAllBlocks() {
 
 function pasteNewBlock() {
   let count = 0;
-  let i;
-  let j;
-  for (i = 0; i < board.blocks.length; i++) {
-   for (j = 0; j < board.blocks.length; j++) {
+  for (let i = 0; i < board.blocks.length; i++) {
+   for (let j = 0; j < board.blocks.length; j++) {
       if (board.blocks[i][j].value === 0) count++;
     }
   }
