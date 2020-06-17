@@ -13,8 +13,6 @@ class GameBoard {
 const board = new GameBoard();
 let textSize;
 let lose = false;
-
-startGame();
 function startGame() {
   canvas.style.opacity = '1';
   score = 0;
@@ -22,16 +20,12 @@ function startGame() {
   drawAllBlocks();
   pasteNewBlock();
   pasteNewBlock();
-
-
-
 }
-
+startGame();
 function Block(row, coll) {
   this.value = 0;
   this.x = coll * board.width + 4 * (coll + 1);
   this.y = row * board.width + 4 * (row + 1);
-
 }
 function createBlocks() {
   for (let i = 0; i < board.size; i++) {
@@ -41,7 +35,6 @@ function createBlocks() {
     }
   }
 }
-
 function drawBlock(block) {
   ctx.beginPath();
   ctx.rect(block.x, block.y, board.width, board.width);
@@ -72,10 +65,8 @@ function drawBlock(block) {
     ctx.textAlign = 'center';
     ctx.fillText(block.value, block.x + board.width / 2,
       block.y + board.width / 1.5);
-
   }
 }
-
 function drawAllBlocks() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = 0; j < board.blocks.length; j++) {
@@ -83,11 +74,10 @@ function drawAllBlocks() {
     }
   }
 }
-
 function pasteNewBlock() {
   let count = 0;
   for (let i = 0; i < board.blocks.length; i++) {
-   for (let j = 0; j < board.blocks.length; j++) {
+    for (let j = 0; j < board.blocks.length; j++) {
       if (board.blocks[i][j].value === 0) count++;
     }
   }
@@ -107,7 +97,6 @@ function pasteNewBlock() {
     }
   }
 }
-
 //config
 document.onkeydown = function(event) {
   if (lose === false) {
@@ -125,11 +114,9 @@ document.onkeydown = function(event) {
       сheckWin();
       scoreTable.innerHTML  = ('Score: ' + score);
     }
-
   }
 }
 ;
-
 function сheckWin() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = 0; j < board.blocks.length; j++) {
@@ -139,9 +126,6 @@ function сheckWin() {
     }
   }
 }
-
-
-
 function moveRight() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = board.blocks.length - 2; j >= 0; j--) {
@@ -167,7 +151,6 @@ function moveRight() {
   }
   pasteNewBlock();
 }
-
 function moveLeft() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = 1; j < board.blocks.length; j++) {
@@ -194,7 +177,6 @@ function moveLeft() {
   }
   pasteNewBlock();
 }
-
 function moveUp() {
   for (let j = 0; j < board.blocks.length; j++) {
     for (let i = 1; i <  board.blocks.length; i++) {
@@ -220,7 +202,6 @@ function moveUp() {
   }
   pasteNewBlock();
 }
-
 function moveDown() {
   for (let j = 0; j < board.blocks.length; j++) {
     for (let i = board.blocks.length - 2; i >= 0; i--) {
@@ -246,7 +227,6 @@ function moveDown() {
   }
   pasteNewBlock();
 }
-
 function finishGame() {
   canvas.style.opacity = '0.5';
   if (lose === true) {
