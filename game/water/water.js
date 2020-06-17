@@ -39,18 +39,18 @@ const Boat = function(image, x, y) {
 };
 
 Boat.prototype.Collide = function(ball) {
-  let hit = false;
   const ballHeight = ball.image.height;
   const ballWidth = ball.image.width;
   const boatWidth = this.image.width;
   const boatHeight = this.image.height;
-  if (this.y < ball.y + ballHeight - 10 && this.y + boatHeight - 10 > ball.y) {
-    if (this.x + boatWidth - 10 > ball.x && this.x < ball.x + ballWidth - 10) {
-      hit = true;
-    }
+  const ballY =  ball.y + ballHeight - 10;
+  const ballX =  ball.x + ballWidth - 10;
+  const curHeight =  this.y + boatHeight - 10;
+  const curWidth =  this.x + boatWidth - 10;
+  if (this.y < ballY && curHeight > ball.y && curWidth> ball.x && this.x < ballX) {
+      return true;
   }
-
-  return hit;
+  return false;
 };
 
 Boat.prototype.MovingBoat = function(variable, distance) {
