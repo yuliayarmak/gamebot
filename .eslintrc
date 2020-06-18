@@ -1,0 +1,11 @@
+{
+  "extends": "metarhia",
+  "overrides": [
+    {
+      "files": ["bot.js"],
+      "rules": {
+        "camelcase": "off"
+      }
+    }
+  ]
+}

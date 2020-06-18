@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    border-radius: 10px;
+}
+
+canvas{
+    display: none;
+    margin: 0 auto;
+    margin-left: 41%;
+    margin-top: 5%; 
+}
+
+#sorry{
+    display: none;
+}
+
+.victims {
+    text-align: center;
+    margin-top: 50%;
+}
+
+.eshafot {
+    
+    width: 400px;
+    height: 287px;
+
+}
+
+
+#userLetter {
+    border: none;
+    border-radius: 10px;
+    border-color: white;
+}
+
+#sendHere {
+    margin-left: 41%;
+    display: none;
+}
+
+#send {
+    border-radius: 10px;
+    color:#848484;
+    background: #2E2E2E;
+    border: none;
+}
+
+#send:hover {
+    color:#6E6E6E;
+    background: #2E2E2E;
+}
+
+#startButton{
+    margin-left: 45%;
+    border: none;
+    margin-top: 23%;
+}
+
+
+#start {
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-left: 7px;
+    color:#848484;
+    background: #2E2E2E;
+    border: none;
+}
+
+#start:hover{
+    color:#6E6E6E;
+    background: #2E2E2E;
+}
+
+#lifeScore {
+    font-size: 12px;
+    color: white;
+    margin-left: 41%;
+    margin-top: 30px;
+}
+
+#tries {
+    display: none;
+}
+
+#word{
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    display: none;
+    margin-right: 7px;
+}
+
+#attention {
+    color: white;
+    display: none;
+    font-size: 12px;
+    /* text-align: center; */
+    margin-left: 42%;
+    margin-top: 20px;
+    
+}
+
+#result{
+    display: none;
+    font-size: 30px;
+    text-align: center;
+    color: #8A0808;
+    text-transform: uppercase;
+}
+
+@media screen and (width:320px) {
+    canvas {
+        margin-left: 14%;
+   }
+  
+    #word {
+        margin-right: 33px;
+    }
+
+    #lifeScore {
+         margin-left: 28%
+    }
+    
+    #sendHere {
+        margin-left: 15%;
+    }
+
+    #startButton {
+        margin-left: 35%;
+        border: none;
+        margin-top: 71%;
+    }
+}
+
+
+
+@media screen and (width:375px) and (height:667px) {
+    canvas {
+        margin-left: 22%;
+   }
+  
+    #word {
+        margin-right: 0;
+    }
+
+    #lifeScore {
+         margin-left: 36%;
+         margin-top: 53px;
+    }
+    
+    #sendHere {
+        margin-left: 23%;
+    }
+
+    #startButton {
+        margin-left: 38%;
+        border: none;
+        margin-top: 81%;
+    }
+}
+
+@media screen and (width:414px) and (height:736px){
+    #startButton {
+        margin-left: 39%;
+        border: none;
+        margin-top: 82%;
+    }
+
+    #word {
+        margin-top: 34px;
+    }
+
+    canvas {
+        margin-left: 24%;
+        margin-top: 15%;
+    }
+
+    #lifeScore{
+        margin-left: 38%;
+        margin-top: 59px;
+    }
+
+    #sendHere {
+        margin-left: 27%;
+    }
+}
+
+
+@media screen and (width:375px) and (height:812px){
+    #startButton {
+        margin-left: 38%;
+        margin-top: 88%;
+    }
+    
+    canvas {
+        margin-left: 22%;
+        margin-top: 28%;
+    }
+
+    #word {
+        margin-top: 26px;
+    }
+    
+    
+    #lifeScore {
+         margin-left: 36%;
+         margin-top: 47px;
+    }
+
+    #sendHere {
+        margin-left: 26%;
+        margin-top: 65px;
+    }
+}
+
+@media screen and (width:768px) and (height:1024px) {
+    
+    #back {
+        background-image: url(img/photo5.jpg);
+        width: 768px;
+        height: 1024px;
+        margin-left: 0;
+    }
+    
+    #btn {
+        margin-left: 29%;
+        padding-top: 33%;
+    }
+    
+    #screen {
+        margin-right: 23px;
+    }
+    
+    #psevdocoloda {
+        padding-top: 43%;
+        margin-left: 46%;
+    }
+    
+    #enemy {
+        margin-left: 46%;
+    }
+    
+    #img {
+        margin-left: 38.9%;
+    }
+
+}
