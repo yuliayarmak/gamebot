@@ -3,6 +3,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const scoreTable = document.getElementById('score');
 let score = 0;
+
 class GameBoard {
   constructor(size = 4, blocks = []) {
     this.size = size;
@@ -10,9 +11,11 @@ class GameBoard {
     this.blocks = blocks;
   }
 }
+
 const board = new GameBoard();
 let textSize;
 let lose = false;
+
 function startGame() {
   canvas.style.opacity = '1';
   score = 0;
@@ -21,12 +24,15 @@ function startGame() {
   pasteNewBlock();
   pasteNewBlock();
 }
+
 startGame();
+
 function Block(row, coll) {
   this.value = 0;
   this.x = coll * board.width + 4 * (coll + 1);
   this.y = row * board.width + 4 * (row + 1);
 }
+
 function createBlocks() {
   for (let i = 0; i < board.size; i++) {
     board.blocks[i] = [];
@@ -35,12 +41,13 @@ function createBlocks() {
     }
   }
 }
-function drawBlock(block) {
+
+function drawBlock(Block) {
   ctx.beginPath();
-  ctx.rect(block.x, block.y, board.width, board.width);
+  ctx.rect(Block.x, Block.y, board.width, board.width);
   ctx.fillStyle = '#FFFFFF';
   ctx.fill();
-  if (block.value) {
+  if (Block.value) {
     const colors  = new Map([
       [2, '#CEFFAB'],
       [4, '#CEFFAB'],
@@ -63,8 +70,9 @@ function drawBlock(block) {
     ctx.font = textSize + 'px Arial';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'center';
-    ctx.fillText(block.value, block.x + board.width / 2,
-      block.y + board.width / 1.5);
+    const { width } = board;
+    const { value, x, y } = Block;
+    ctx.fillText(value, x + width / 2, y + width / 1.5);
   }
 }
 function drawAllBlocks() {
@@ -74,6 +82,7 @@ function drawAllBlocks() {
     }
   }
 }
+
 function pasteNewBlock() {
   let count = 0;
   for (let i = 0; i < board.blocks.length; i++) {
@@ -82,7 +91,6 @@ function pasteNewBlock() {
     }
   }
   if (count === 0) {
-
     lose = true;
     finishGame();
     return;
@@ -97,26 +105,25 @@ function pasteNewBlock() {
     }
   }
 }
+
 //config
 document.onkeydown = function(event) {
-  if (lose === false) {
-    if (event.keyCode === 38) {
-      moveUp();
-      сheckWin();
-    } else if (event.keyCode === 39) {
-      moveRight();
-      сheckWin();
-    } else if (event.keyCode === 40) {
-      moveDown();
-      сheckWin();
-    } else if (event.keyCode === 37) {
-      moveLeft();
-      сheckWin();
-      scoreTable.innerHTML  = ('Score: ' + score);
-    }
-  }
-}
-;
+  if (lose) return;
+  const  UP = '38';
+  const RIGHT = '39';
+  const DOWN = '40';
+  const LEFT = '37';
+  const directionals = {};
+  directionals[UP] = moveUp;
+  directionals[DOWN] = moveDown;
+  directionals[LEFT] = moveLeft;
+  directionals[RIGHT] = moveRight;
+  const fn = directionals[event.keyCode];
+  fn();
+  сheckWin();
+  scoreTable.innerHTML  = ('Score: ' + score);
+};
+
 function сheckWin() {
   for (let i = 0; i < board.blocks.length; i++) {
     for (let j = 0; j < board.blocks.length; j++) {
@@ -126,21 +133,22 @@ function сheckWin() {
     }
   }
 }
+
 function moveRight() {
-  for (let i = 0; i < board.blocks.length; i++) {
-    for (let j = board.blocks.length - 2; j >= 0; j--) {
-      if (board.blocks[i][j].value) {
+  const field = board.blocks;
+  for (let i = 0; i < field.length; i++) {
+    for (let j = field.length - 2; j >= 0; j--) {
+      if (field[i][j].value) {
         let coll = j;
-        while (coll + 1 < board.blocks.length) {
-          if (board.blocks[i][coll + 1].value === 0) {
-            board.blocks[i][coll + 1].value = board.blocks[i][coll].value;
-            board.blocks[i][coll].value = 0;
+        while (coll + 1 < field.length) {
+          if (field[i][coll + 1].value === 0) {
+            field[i][coll + 1].value = field[i][coll].value;
+            field[i][coll].value = 0;
             coll++;
-          } else if (board.blocks[i][coll].value ===
-            board.blocks[i][coll + 1].value) {
-            board.blocks[i][coll + 1].value *= 2;
-            score +=  board.blocks[i][coll + 1].value;
-            board.blocks[i][coll].value = 0;
+          } else if (field[i][coll].value === field[i][coll + 1].value) {
+            field[i][coll + 1].value *= 2;
+            score +=  field[i][coll + 1].value;
+            field[i][coll].value = 0;
             break;
           } else {
             break;
@@ -151,22 +159,22 @@ function moveRight() {
   }
   pasteNewBlock();
 }
+
 function moveLeft() {
-  for (let i = 0; i < board.blocks.length; i++) {
-    for (let j = 1; j < board.blocks.length; j++) {
-      if (board.blocks[i][j].value) {
+  const field = board.blocks;
+  for (let i = 0; i < field.length; i++) {
+    for (let j = 1; j < field.length; j++) {
+      if (field[i][j].value) {
         let coll = j;
         while (coll - 1 >= 0) {
-          if (board.blocks[i][coll - 1].value === 0) {
-            board.blocks[i][coll - 1].value = board.blocks[i][coll].value;
-            board.blocks[i][coll].value = 0;
+          if (field[i][coll - 1].value === 0) {
+            field[i][coll - 1].value = field[i][coll].value;
+            field[i][coll].value = 0;
             coll--;
-          } else if (board.blocks[i][coll].value ===
-
-            board.blocks[i][coll - 1].value) {
-            board.blocks[i][coll - 1].value *= 2;
-            score +=   board.blocks[i][coll - 1].value;
-            board.blocks[i][coll].value = 0;
+          } else if (field[i][coll].value === field[i][coll - 1].value) {
+            field[i][coll - 1].value *= 2;
+            score +=   field[i][coll - 1].value;
+            field[i][coll].value = 0;
             break;
           } else {
             break;
@@ -177,21 +185,22 @@ function moveLeft() {
   }
   pasteNewBlock();
 }
+
 function moveUp() {
-  for (let j = 0; j < board.blocks.length; j++) {
-    for (let i = 1; i <  board.blocks.length; i++) {
-      if (board.blocks[i][j].value) {
+  const field = board.blocks;
+  for (let j = 0; j < field.length; j++) {
+    for (let i = 1; i < field.length; i++) {
+      if (field[i][j].value) {
         let row = i;
         while (row > 0) {
-          if (board.blocks[row - 1][j].value === 0) {
-            board.blocks[row - 1][j].value = board.blocks[row][j].value;
-            board.blocks[row][j].value = 0;
+          if (field[row - 1][j].value === 0) {
+            field[row - 1][j].value = field[row][j].value;
+            field[row][j].value = 0;
             row--;
-          } else if (board.blocks[row][j].value ===
-            board.blocks[row - 1][j].value) {
-            board.blocks[row - 1][j].value *= 2;
-            score +=   board.blocks[row - 1][j].value;
-            board.blocks[row][j].value = 0;
+          } else if (field[row][j].value === field[row - 1][j].value) {
+            field[row - 1][j].value *= 2;
+            score +=   field[row - 1][j].value;
+            field[row][j].value = 0;
             break;
           } else {
             break;
@@ -202,21 +211,22 @@ function moveUp() {
   }
   pasteNewBlock();
 }
+
 function moveDown() {
-  for (let j = 0; j < board.blocks.length; j++) {
-    for (let i = board.blocks.length - 2; i >= 0; i--) {
-      if (board.blocks[i][j].value) {
+  const field = board.blocks;
+  for (let j = 0; j < field.length; j++) {
+    for (let i = field.length - 2; i >= 0; i--) {
+      if (field[i][j].value) {
         let row = i;
-        while (row + 1 < board.blocks.length) {
-          if (board.blocks[row + 1][j].value === 0) {
-            board.blocks[row + 1][j].value = board.blocks[row][j].value;
-            board.blocks[row][j].value = 0;
+        while (row + 1 < field.length) {
+          if (field[row + 1][j].value === 0) {
+            field[row + 1][j].value = field[row][j].value;
+            field[row][j].value = 0;
             row++;
-          } else if (board.blocks[row][j].value ===
-            board.blocks[row + 1][j].value) {
-            board.blocks[row + 1][j].value *= 2;
-            score += board.blocks[row + 1][j].value;
-            board.blocks[row][j].value = 0;
+          } else if (field[row][j].value === field[row + 1][j].value) {
+            field[row + 1][j].value *= 2;
+            score += field[row + 1][j].value;
+            field[row][j].value = 0;
             break;
           } else {
             break;
@@ -227,6 +237,7 @@ function moveDown() {
   }
   pasteNewBlock();
 }
+
 function finishGame() {
   canvas.style.opacity = '0.5';
   if (lose === true) {
@@ -235,6 +246,7 @@ function finishGame() {
     alert('you win');
   }
 }
+
 // if(!(/iPhone|iPad/i.test(navigator.userAgent))){
 //   document.getElementById('canvasBlock').style.display='none';
 //   document.getElementById('canvas').style.display='none';
